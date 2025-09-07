@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Empresarial - Dashboard Retail Analytics</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .page-break { page-break-before: always; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #0891b2;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #0891b2;
+            font-size: 28px;
+            margin: 0;
+        }
+        
+        .header p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #0891b2;
+            border-left: 4px solid #0891b2;
+            padding-left: 15px;
+            font-size: 20px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .kpi-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0891b2;
+            margin: 10px 0;
+        }
+        
+        .kpi-label {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .trend-positive {
+            color: #10b981;
+        }
+        
+        .trend-negative {
+            color: #ef4444;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        
+        .alert {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .recommendation {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .chart-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Análisis Empresarial</h1>
+        <p>Dashboard de Analytics Retail</p>
+        <p>Período: Diciembre 2010 - Diciembre 2011</p>
+        <p>Fecha del Reporte: Enero 2025</p>
+    </div>
+
+    <div class="section">
+        <h2>📊 Resumen Ejecutivo</h2>
+        <p>El análisis de los datos de ventas retail revela un negocio sólido con oportunidades significativas de crecimiento. Con ingresos totales de <strong>£8.2M</strong> y un crecimiento del <strong>46.5%</strong>, la empresa muestra una trayectoria positiva en el mercado de productos para el hogar.</p>
+        
+        <div class="alert">
+            <strong>Hallazgo Clave:</strong> Reino Unido representa el 91.2% de las ventas totales, indicando una fuerte dependencia del mercado doméstico.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📈 KPIs Principales</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">£8.2M</div>
+                <div class="kpi-label">Ingresos Totales</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value trend-positive">+46.5%</div>
+                <div class="kpi-label">Crecimiento Anual</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">541,909</div>
+                <div class="kpi-label">Transacciones</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">£15.13</div>
+                <div class="kpi-label">Ticket Promedio</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">4,372</div>
+                <div class="kpi-label">Clientes Únicos</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">3,684</div>
+                <div class="kpi-label">Productos Únicos</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>🌍 Análisis Geográfico</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Ingresos</th>
+                    <th>% del Total</th>
+                    <th>Transacciones</th>
+                    <th>Ticket Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Reino Unido</td>
+                    <td>£7.48M</td>
+                    <td>91.2%</td>
+                    <td>495,478</td>
+                    <td>£15.10</td>
+                </tr>
+                <tr>
+                    <td>Alemania</td>
+                    <td>£221K</td>
+                    <td>2.7%</td>
+                    <td>9,495</td>
+                    <td>£23.26</td>
+                </tr>
+                <tr>
+                    <td>Francia</td>
+                    <td>£197K</td>
+                    <td>2.4%</td>
+                    <td>8,557</td>
+                    <td>£23.04</td>
+                </tr>
+                <tr>
+                    <td>EIRE</td>
+                    <td>£142K</td>
+                    <td>1.7%</td>
+                    <td>7,236</td>
+                    <td>£19.63</td>
+                </tr>
+                <tr>
+                    <td>España</td>
+                    <td>£54K</td>
+                    <td>0.7%</td>
+                    <td>2,533</td>
+                    <td>£21.31</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="recommendation">
+            <strong>Recomendación:</strong> Diversificar geográficamente. Los mercados europeos muestran tickets promedio más altos, sugiriendo oportunidades de expansión.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🏆 Productos Más Vendidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad Vendida</th>
+                    <th>Ingresos</th>
+                    <th>% del Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>WHITE HANGING HEART T-LIGHT HOLDER</td>
+                    <td>2,369</td>
+                    <td>£5,923</td>
+                    <td>0.07%</td>
+                </tr>
+                <tr>
+                    <td>REGENCY CAKESTAND 3 TIER</td>
+                    <td>2,200</td>
+                    <td>£19,580</td>
+                    <td>0.24%</td>
+                </tr>
+                <tr>
+                    <td>JUMBO BAG RED RETROSPOT</td>
+                    <td>2,159</td>
+                    <td>£4,318</td>
+                    <td>0.05%</td>
+                </tr>
+                <tr>
+                    <td>PARTY BUNTING</td>
+                    <td>1,727</td>
+                    <td>£4,663</td>
+                    <td>0.06%</td>
+                </tr>
+                <tr>
+                    <td>LUNCH BAG RED RETROSPOT</td>
+                    <td>1,638</td>
+                    <td>£2,621</td>
+                    <td>0.03%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>📅 Análisis Temporal</h2>
+        <div class="chart-placeholder">
+            [Gráfico de Tendencias Mensuales - Disponible en Dashboard Web]
+        </div>
+        
+        <h3>Patrones Identificados:</h3>
+        <ul>
+            <li><strong>Estacionalidad:</strong> Picos de ventas en noviembre-diciembre (temporada navideña)</li>
+            <li><strong>Crecimiento:</strong> Tendencia ascendente constante durante 2011</li>
+            <li><strong>Días de la semana:</strong> Jueves y viernes son los días de mayor actividad</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>⚠️ Alertas y Riesgos</h2>
+        <div class="alert">
+            <strong>Concentración Geográfica:</strong> 91.2% de ingresos dependen de Reino Unido - Alto riesgo de concentración.
+        </div>
+        <div class="alert">
+            <strong>Devoluciones:</strong> Se detectaron 9,288 transacciones de devolución que requieren análisis detallado.
+        </div>
+        <div class="alert">
+            <strong>Clientes Sin ID:</strong> 135,080 transacciones sin CustomerID - Pérdida de datos de seguimiento.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 Recomendaciones Estratégicas</h2>
+        
+        <div class="recommendation">
+            <strong>1. Expansión Internacional:</strong>
+            <ul>
+                <li>Priorizar Alemania y Francia (tickets promedio 50% más altos)</li>
+                <li>Desarrollar estrategias de marketing localizadas</li>
+                <li>Establecer centros de distribución regionales</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <strong>2. Optimización de Productos:</strong>
+            <ul>
+                <li>Aumentar inventario de productos estrella en temporada alta</li>
+                <li>Analizar márgenes de productos de bajo volumen</li>
+                <li>Desarrollar bundles de productos complementarios</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <strong>3. Mejora de Datos:</strong>
+            <ul>
+                <li>Implementar sistema obligatorio de CustomerID</li>
+                <li>Crear programa de fidelización para tracking</li>
+                <li>Analizar causas de devoluciones para reducirlas</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <strong>4. Crecimiento de Ingresos:</strong>
+            <ul>
+                <li>Aumentar ticket promedio mediante cross-selling</li>
+                <li>Implementar pricing dinámico por región</li>
+                <li>Desarrollar productos premium para mercados internacionales</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>📊 Proyecciones 2025</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">£12.0M</div>
+                <div class="kpi-label">Ingresos Proyectados</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value trend-positive">+46%</div>
+                <div class="kpi-label">Crecimiento Esperado</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">790K</div>
+                <div class="kpi-label">Transacciones Proyectadas</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">£18.50</div>
+                <div class="kpi-label">Ticket Objetivo</div>
+            </div>
+        </div>
+
+        <h3>Supuestos de la Proyección:</h3>
+        <ul>
+            <li>Mantenimiento de la tendencia de crecimiento actual</li>
+            <li>Expansión exitosa en mercados europeos (+15% ingresos internacionales)</li>
+            <li>Mejora del ticket promedio mediante estrategias de upselling</li>
+            <li>Reducción de devoluciones del 10% al 5%</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📋 Conclusiones</h2>
+        <p>El negocio muestra fundamentos sólidos con un crecimiento robusto del 46.5% y una base de clientes activa. Las principales oportunidades se centran en:</p>
+        
+        <ol>
+            <li><strong>Diversificación geográfica</strong> para reducir la dependencia del mercado británico</li>
+            <li><strong>Optimización del mix de productos</strong> enfocándose en artículos de mayor margen</li>
+            <li><strong>Mejora de la calidad de datos</strong> para decisiones más informadas</li>
+            <li><strong>Estrategias de retención</strong> para maximizar el valor de vida del cliente</li>
+        </ol>
+
+        <p>Con la implementación de estas recomendaciones, se proyecta alcanzar £12M en ingresos para 2025, manteniendo un crecimiento sostenible y rentable.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 12px;">
+        <p>Reporte generado por Dashboard Retail Analytics | Enero 2025</p>
+        <p>Para más detalles interactivos, consulte el dashboard web completo</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "description": "Archivo de ejemplo con estructura de datos para el dashboard",
+  "kpis": {
+    "totalRevenue": 9747748,
+    "growth": 46.5,
+    "totalTransactions": 25900,
+    "averageTicket": 376.45
+  },
+  "topCountries": [
+    { "name": "Reino Unido", "revenue": 8187806, "percentage": 84.0 },
+    { "name": "Alemania", "revenue": 221698, "percentage": 2.3 },
+    { "name": "Francia", "revenue": 197403, "percentage": 2.0 }
+  ],
+  "topProducts": [
+    { "name": "WHITE HANGING HEART T-LIGHT HOLDER", "sales": 2369, "revenue": 35535 },
+    { "name": "REGENCY CAKESTAND 3 TIER", "sales": 2200, "revenue": 49500 },
+    { "name": "JUMBO BAG RED RETROSPOT", "sales": 2159, "revenue": 43180 }
+  ],
+  "note": "Este es un archivo de ejemplo. Los datos reales se procesan mediante los scripts en /scripts/"
+}
