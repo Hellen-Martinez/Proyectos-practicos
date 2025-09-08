@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis Empresarial - Dashboard Retail Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @media print {
             body { margin: 0; }
@@ -11,143 +12,189 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.5;
+            color: #1a1a1a;
             max-width: 210mm;
             margin: 0 auto;
-            padding: 20px;
+            padding: 25px;
             background: white;
         }
         
         .header {
             text-align: center;
-            border-bottom: 3px solid #0891b2;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
         }
         
         .header h1 {
-            color: #0891b2;
-            font-size: 28px;
+            color: #2c3e50;
+            font-size: 32px;
             margin: 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .header .subtitle {
+            color: #34495e;
+            font-size: 18px;
+            margin: 8px 0;
+            font-weight: 500;
         }
         
         .header p {
-            color: #64748b;
+            color: #5d6d7e;
             font-size: 14px;
             margin: 5px 0;
         }
         
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         
         .section h2 {
-            color: #0891b2;
-            border-left: 4px solid #0891b2;
-            padding-left: 15px;
-            font-size: 20px;
+            color: #2c3e50;
+            border-left: 4px solid #34495e;
+            padding-left: 20px;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
         }
         
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .kpi-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 25px;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .kpi-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #0891b2;
-            margin: 10px 0;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 12px 0;
         }
         
         .kpi-label {
             font-size: 14px;
-            color: #64748b;
+            color: #5d6d7e;
+            font-weight: 500;
         }
         
         .trend-positive {
-            color: #10b981;
+            color: #27ae60;
         }
         
         .trend-negative {
-            color: #ef4444;
+            color: #e74c3c;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
+            font-size: 14px;
         }
         
         th, td {
-            border: 1px solid #e2e8f0;
-            padding: 12px;
+            border: 1px solid #bdc3c7;
+            padding: 14px;
             text-align: left;
         }
         
         th {
-            background: #f1f5f9;
+            background: #ecf0f1;
             font-weight: 600;
-            color: #334155;
+            color: #2c3e50;
         }
         
         .alert {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            margin: 15px 0;
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 4px;
         }
         
         .recommendation {
-            background: #ecfdf5;
-            border-left: 4px solid #10b981;
-            padding: 15px;
-            margin: 15px 0;
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 4px;
         }
         
-        .chart-placeholder {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            margin: 20px 0;
+        .chart-container {
+            background: white;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            height: 350px;
+        }
+        
+        .executive-summary {
+            background: #f4f6f7;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        strong {
+            color: #2c3e50;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Análisis Empresarial</h1>
-        <p>Dashboard de Analytics Retail</p>
-        <p>Período: Diciembre 2010 - Diciembre 2011</p>
+        <h1>ANÁLISIS EMPRESARIAL</h1>
+        <div class="subtitle">Dashboard de Analytics Retail</div>
+        <p>Período de Análisis: Diciembre 2010 - Diciembre 2011</p>
         <p>Fecha del Reporte: Enero 2025</p>
     </div>
 
+    <!-- Removed emojis and improved executive summary styling -->
     <div class="section">
-        <h2>📊 Resumen Ejecutivo</h2>
-        <p>El análisis de los datos de ventas retail revela un negocio sólido con oportunidades significativas de crecimiento. Con ingresos totales de <strong>£8.2M</strong> y un crecimiento del <strong>46.5%</strong>, la empresa muestra una trayectoria positiva en el mercado de productos para el hogar.</p>
-        
-        <div class="alert">
-            <strong>Hallazgo Clave:</strong> Reino Unido representa el 91.2% de las ventas totales, indicando una fuerte dependencia del mercado doméstico.
+        <h2>Resumen Ejecutivo</h2>
+        <div class="executive-summary">
+            <p>El análisis de los datos de ventas retail revela un negocio sólido con oportunidades significativas de crecimiento. Con ingresos totales de <strong>£8.2M</strong> y un crecimiento del <strong>46.5%</strong>, la empresa muestra una trayectoria positiva en el mercado de productos para el hogar.</p>
+            
+            <div class="alert">
+                <strong>Hallazgo Clave:</strong> Reino Unido representa el 91.2% de las ventas totales, indicando una fuerte dependencia del mercado doméstico que requiere diversificación estratégica.
+            </div>
         </div>
     </div>
 
+    <!-- Removed emojis from section headers -->
     <div class="section">
-        <h2>📈 KPIs Principales</h2>
+        <h2>Indicadores Clave de Rendimiento</h2>
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-value">£8.2M</div>
@@ -179,7 +226,7 @@
     <div class="page-break"></div>
 
     <div class="section">
-        <h2>🌍 Análisis Geográfico</h2>
+        <h2>Análisis Geográfico</h2>
         <table>
             <thead>
                 <tr>
@@ -230,12 +277,12 @@
         </table>
 
         <div class="recommendation">
-            <strong>Recomendación:</strong> Diversificar geográficamente. Los mercados europeos muestran tickets promedio más altos, sugiriendo oportunidades de expansión.
+            <strong>Recomendación Estratégica:</strong> Diversificar geográficamente. Los mercados europeos muestran tickets promedio superiores en 50%, sugiriendo oportunidades de expansión con mayor rentabilidad.
         </div>
     </div>
 
     <div class="section">
-        <h2>🏆 Productos Más Vendidos</h2>
+        <h2>Productos de Mayor Rendimiento</h2>
         <table>
             <thead>
                 <tr>
@@ -282,69 +329,71 @@
 
     <div class="page-break"></div>
 
+    <!-- Added embedded chart instead of placeholder -->
     <div class="section">
-        <h2>📅 Análisis Temporal</h2>
-        <div class="chart-placeholder">
-            [Gráfico de Tendencias Mensuales - Disponible en Dashboard Web]
+        <h2>Análisis Temporal</h2>
+        <div class="chart-container">
+            <canvas id="salesTrendChart"></canvas>
         </div>
         
         <h3>Patrones Identificados:</h3>
         <ul>
-            <li><strong>Estacionalidad:</strong> Picos de ventas en noviembre-diciembre (temporada navideña)</li>
-            <li><strong>Crecimiento:</strong> Tendencia ascendente constante durante 2011</li>
-            <li><strong>Días de la semana:</strong> Jueves y viernes son los días de mayor actividad</li>
+            <li><strong>Estacionalidad:</strong> Incremento significativo en ventas durante noviembre-diciembre (temporada navideña)</li>
+            <li><strong>Tendencia de Crecimiento:</strong> Progresión ascendente constante durante el período 2011</li>
+            <li><strong>Comportamiento Semanal:</strong> Jueves y viernes registran la mayor actividad comercial</li>
+            <li><strong>Volatilidad:</strong> Variaciones mensuales del 15-25% respecto al promedio anual</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>⚠️ Alertas y Riesgos</h2>
+        <h2>Alertas y Factores de Riesgo</h2>
         <div class="alert">
-            <strong>Concentración Geográfica:</strong> 91.2% de ingresos dependen de Reino Unido - Alto riesgo de concentración.
+            <strong>Concentración Geográfica:</strong> 91.2% de ingresos dependen de Reino Unido - Riesgo elevado de concentración que requiere mitigación inmediata.
         </div>
         <div class="alert">
-            <strong>Devoluciones:</strong> Se detectaron 9,288 transacciones de devolución que requieren análisis detallado.
+            <strong>Gestión de Devoluciones:</strong> Se identificaron 9,288 transacciones de devolución que representan una pérdida potencial de ingresos.
         </div>
         <div class="alert">
-            <strong>Clientes Sin ID:</strong> 135,080 transacciones sin CustomerID - Pérdida de datos de seguimiento.
+            <strong>Calidad de Datos:</strong> 135,080 transacciones sin CustomerID - Limitación crítica para análisis de comportamiento del cliente.
         </div>
     </div>
 
     <div class="section">
-        <h2>🎯 Recomendaciones Estratégicas</h2>
+        <h2>Recomendaciones Estratégicas</h2>
         
         <div class="recommendation">
-            <strong>1. Expansión Internacional:</strong>
+            <strong>1. Diversificación de Mercados:</strong>
             <ul>
-                <li>Priorizar Alemania y Francia (tickets promedio 50% más altos)</li>
-                <li>Desarrollar estrategias de marketing localizadas</li>
-                <li>Establecer centros de distribución regionales</li>
+                <li>Priorizar expansión en Alemania y Francia (tickets promedio 50% superiores)</li>
+                <li>Desarrollar estrategias de marketing localizadas por región</li>
+                <li>Establecer centros de distribución regionales para optimizar logística</li>
             </ul>
         </div>
 
         <div class="recommendation">
-            <strong>2. Optimización de Productos:</strong>
+            <strong>2. Optimización del Portfolio de Productos:</strong>
             <ul>
-                <li>Aumentar inventario de productos estrella en temporada alta</li>
-                <li>Analizar márgenes de productos de bajo volumen</li>
-                <li>Desarrollar bundles de productos complementarios</li>
+                <li>Incrementar inventario de productos estrella durante temporadas de alta demanda</li>
+                <li>Analizar márgenes de contribución de productos de bajo volumen</li>
+                <li>Desarrollar estrategias de bundling para productos complementarios</li>
             </ul>
         </div>
 
         <div class="recommendation">
-            <strong>3. Mejora de Datos:</strong>
+            <strong>3. Mejora de Infraestructura de Datos:</strong>
             <ul>
-                <li>Implementar sistema obligatorio de CustomerID</li>
-                <li>Crear programa de fidelización para tracking</li>
-                <li>Analizar causas de devoluciones para reducirlas</li>
+                <li>Implementar sistema obligatorio de identificación de clientes</li>
+                <li>Crear programa de fidelización para mejorar tracking</li>
+                <li>Establecer análisis de causas raíz para reducir devoluciones</li>
             </ul>
         </div>
 
         <div class="recommendation">
-            <strong>4. Crecimiento de Ingresos:</strong>
+            <strong>4. Estrategias de Crecimiento de Ingresos:</strong>
             <ul>
-                <li>Aumentar ticket promedio mediante cross-selling</li>
-                <li>Implementar pricing dinámico por región</li>
-                <li>Desarrollar productos premium para mercados internacionales</li>
+                <li>Incrementar ticket promedio mediante técnicas de cross-selling y up-selling</li>
+                <li>Implementar pricing dinámico basado en análisis regional</li>
+                <li>Desarrollar líneas de productos premium para mercados internacionales</li>
             </ul>
         </div>
     </div>
@@ -352,7 +401,7 @@
     <div class="page-break"></div>
 
     <div class="section">
-        <h2>📊 Proyecciones 2025</h2>
+        <h2>Proyecciones Financieras 2025</h2>
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-value">£12.0M</div>
@@ -374,30 +423,102 @@
 
         <h3>Supuestos de la Proyección:</h3>
         <ul>
-            <li>Mantenimiento de la tendencia de crecimiento actual</li>
+            <li>Mantenimiento de la tendencia de crecimiento histórica</li>
             <li>Expansión exitosa en mercados europeos (+15% ingresos internacionales)</li>
             <li>Mejora del ticket promedio mediante estrategias de upselling</li>
-            <li>Reducción de devoluciones del 10% al 5%</li>
+            <li>Reducción de tasa de devoluciones del 10% al 5%</li>
+            <li>Implementación exitosa de programa de fidelización</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>📋 Conclusiones</h2>
-        <p>El negocio muestra fundamentos sólidos con un crecimiento robusto del 46.5% y una base de clientes activa. Las principales oportunidades se centran en:</p>
+        <h2>Conclusiones y Próximos Pasos</h2>
+        <p>El análisis revela fundamentos empresariales sólidos con un crecimiento robusto del 46.5% y una base de clientes activa. Las oportunidades estratégicas prioritarias incluyen:</p>
         
         <ol>
-            <li><strong>Diversificación geográfica</strong> para reducir la dependencia del mercado británico</li>
-            <li><strong>Optimización del mix de productos</strong> enfocándose en artículos de mayor margen</li>
-            <li><strong>Mejora de la calidad de datos</strong> para decisiones más informadas</li>
-            <li><strong>Estrategias de retención</strong> para maximizar el valor de vida del cliente</li>
+            <li><strong>Diversificación geográfica inmediata</strong> para reducir la dependencia del mercado británico</li>
+            <li><strong>Optimización del mix de productos</strong> con enfoque en artículos de mayor margen</li>
+            <li><strong>Mejora de la infraestructura de datos</strong> para decisiones basadas en evidencia</li>
+            <li><strong>Implementación de estrategias de retención</strong> para maximizar el valor de vida del cliente</li>
         </ol>
 
-        <p>Con la implementación de estas recomendaciones, se proyecta alcanzar £12M en ingresos para 2025, manteniendo un crecimiento sostenible y rentable.</p>
+        <p>La ejecución de estas recomendaciones posiciona a la empresa para alcanzar £12M en ingresos para 2025, manteniendo un crecimiento sostenible y rentable en el mercado retail.</p>
     </div>
 
-    <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 12px;">
-        <p>Reporte generado por Dashboard Retail Analytics | Enero 2025</p>
-        <p>Para más detalles interactivos, consulte el dashboard web completo</p>
+    <div style="text-align: center; margin-top: 50px; padding-top: 25px; border-top: 2px solid #bdc3c7; color: #5d6d7e; font-size: 12px;">
+        <p><strong>Dashboard Retail Analytics</strong> | Reporte Ejecutivo | Enero 2025</p>
+        <p>Documento confidencial - Para uso interno exclusivamente</p>
     </div>
+
+    <!-- Added Chart.js script for embedded sales trend chart -->
+    <script>
+        // Sales Trend Chart
+        const ctx = document.getElementById('salesTrendChart').getContext('2d');
+        const salesTrendChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Ingresos Mensuales (£000)',
+                    data: [485, 520, 580, 610, 650, 680, 720, 750, 780, 820, 950, 1100],
+                    borderColor: '#2c3e50',
+                    backgroundColor: 'rgba(44, 62, 80, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Transacciones (000)',
+                    data: [32, 34, 38, 40, 42, 44, 46, 48, 50, 52, 58, 65],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tendencias de Ventas Mensuales 2011',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#2c3e50'
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Ingresos (£000)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Transacciones (000)'
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

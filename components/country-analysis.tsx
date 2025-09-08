@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
+import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 
 const countryData = [
   { country: "Reino Unido", ventas: 354, revenue: 7850.25, porcentaje: 91.2 },
@@ -21,10 +21,11 @@ export function CountryAnalysis() {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={350}>
-          <BarChart data={countryData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ComposedChart data={countryData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.5} />
             <XAxis dataKey="country" stroke="#64748b" fontSize={11} angle={-45} textAnchor="end" height={80} />
-            <YAxis stroke="#64748b" fontSize={12} />
+            <YAxis yAxisId="left" stroke="#0ea5e9" fontSize={12} />
+            <YAxis yAxisId="right" orientation="right" stroke="#10b981" fontSize={12} />
             <Tooltip
               contentStyle={{
                 backgroundColor: "#ffffff",
@@ -34,32 +35,57 @@ export function CountryAnalysis() {
               }}
               formatter={(value, name) => {
                 if (name === "revenue") return [`$${value.toLocaleString()}`, "Ingresos"]
-                if (name === "ventas") return [value, "Transacciones"]
+                if (name === "ventas") return [`${value} transacciones`, "Transacciones"]
                 if (name === "porcentaje") return [`${value}%`, "% del Total"]
                 return [value, name]
               }}
             />
             <Legend />
-            <Bar dataKey="revenue" fill="#0ea5e9" name="Ingresos ($)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="ventas" fill="#10b981" name="Transacciones" radius={[4, 4, 0, 0]} />
-          </BarChart>
+            <Bar yAxisId="left" dataKey="revenue" fill="#0ea5e9" name="Ingresos ($)" radius={[4, 4, 0, 0]} />
+            <Line
+              yAxisId="right"
+              type="monotone"
+              dataKey="ventas"
+              stroke="#10b981"
+              strokeWidth={3}
+              dot={{ fill: "#10b981", strokeWidth: 2, r: 6 }}
+              name="Transacciones"
+            />
+          </ComposedChart>
         </ResponsiveContainer>
 
-        <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+        <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
           <div>
-            <h4 className="font-semibold text-foreground mb-2">Top 3 Países</h4>
+            <h4 className="font-semibold text-foreground mb-2">Top 3 Países (Ingresos)</h4>
             <div className="space-y-1">
               <div className="flex justify-between">
                 <span>Reino Unido</span>
-                <span className="font-medium">91.2%</span>
+                <span className="font-medium text-blue-600">$7,850</span>
               </div>
               <div className="flex justify-between">
                 <span>Francia</span>
-                <span className="font-medium">4.2%</span>
+                <span className="font-medium text-blue-600">$2,101</span>
               </div>
               <div className="flex justify-between">
                 <span>Alemania</span>
-                <span className="font-medium">2.1%</span>
+                <span className="font-medium text-blue-600">$1,200</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 className="font-semibold text-foreground mb-2">Top 3 Países (Transacciones)</h4>
+            <div className="space-y-1">
+              <div className="flex justify-between">
+                <span>Reino Unido</span>
+                <span className="font-medium text-green-600">354</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Francia</span>
+                <span className="font-medium text-green-600">18</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Alemania</span>
+                <span className="font-medium text-green-600">12</span>
               </div>
             </div>
           </div>
@@ -75,8 +101,8 @@ export function CountryAnalysis() {
                 <span className="font-medium">Reino Unido</span>
               </div>
               <div className="flex justify-between">
-                <span>Oportunidad</span>
-                <span className="font-medium">Europa</span>
+                <span>Ticket Promedio</span>
+                <span className="font-medium">$22.17</span>
               </div>
             </div>
           </div>
