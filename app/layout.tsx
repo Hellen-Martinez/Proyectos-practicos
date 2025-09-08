@@ -1,26 +1,33 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Space_Grotesk, DM_Sans } from "next/font/google"
-import { GeistMono } from "geist/font/mono"
+import { Inter, Crimson_Text } from "next/font/google"
+import { JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-space-grotesk",
+  variable: "--font-inter",
 })
 
-const dmSans = DM_Sans({
+const crimsonText = Crimson_Text({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  variable: "--font-crimson-text",
+})
+
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans",
+  variable: "--font-jetbrains-mono",
 })
 
 export const metadata: Metadata = {
-  title: "Dashboard de Ventas Retail",
-  description: "Analytics de ventas para productos de cocina y hogar",
+  title: "Retail Analytics Dashboard | Executive Report",
+  description: "Comprehensive retail analytics and business intelligence dashboard for strategic decision making",
   generator: "v0.app",
 }
 
@@ -30,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
-      <body className={`font-sans ${dmSans.variable} ${spaceGrotesk.variable} ${GeistMono.variable}`}>
+    <html lang="en">
+      <body className={`font-sans ${inter.variable} ${crimsonText.variable} ${jetbrainsMono.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         <Analytics />
       </body>
