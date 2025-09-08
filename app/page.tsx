@@ -8,26 +8,47 @@ import { BusinessInsights } from "@/components/business-insights"
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <DashboardHeader />
 
-      <main className="container mx-auto px-4 py-6 space-y-6">
-        {/* KPIs Section */}
-        <KPICards />
+      <main className="container mx-auto px-6 py-8 space-y-8">
+        {/* Executive KPIs Section */}
+        <section className="space-y-2">
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 tracking-tight">
+            Métricas de Rendimiento
+          </h2>
+          <KPICards />
+        </section>
 
-        {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <SalesChart />
-          <CountryAnalysis />
-        </div>
+        {/* Analytics Section */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 tracking-tight">
+            Análisis de Ventas
+          </h2>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <SalesChart />
+            <CountryAnalysis />
+          </div>
+        </section>
 
-        {/* Products and Transactions */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <TopProducts />
-          <RecentTransactions />
-        </div>
+        {/* Operations Section */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 tracking-tight">
+            Operaciones y Productos
+          </h2>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <TopProducts />
+            <RecentTransactions />
+          </div>
+        </section>
 
-        <BusinessInsights />
+        {/* Strategic Insights */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 tracking-tight">
+            Insights Estratégicos
+          </h2>
+          <BusinessInsights />
+        </section>
       </main>
     </div>
   )

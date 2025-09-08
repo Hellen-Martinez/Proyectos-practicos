@@ -1,40 +1,50 @@
-# 📊 Dashboard de Analytics Retail
+# Dashboard de Analytics Retail
 
-*Dashboard completo de análisis de ventas para productos de cocina y hogar*
+*Plataforma integral de análisis de ventas para productos de cocina y hogar*
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/hellen-martinezs-projects/v0-dashboard-with-database)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/trOU7crvaby)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=flat&logo=vercel)](https://vercel.com/hellen-martinezs-projects/v0-dashboard-with-database)
+[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-000000?style=flat)](https://v0.app/chat/projects/trOU7crvaby)
+[![Next.js](https://img.shields.io/badge/Next.js-15-1a365d?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-2d3748?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 
-## 🚀 Características
+## Características Principales
 
-- **KPIs en Tiempo Real**: Métricas de ingresos, crecimiento y rendimiento
-- **Análisis Geográfico**: Ventas por países con visualizaciones interactivas
-- **Productos Top**: Ranking de productos más vendidos y rentables
-- **Tendencias de Ventas**: Gráficos de evolución temporal de ingresos
-- **Insights Inteligentes**: Recomendaciones automáticas basadas en datos
-- **Transacciones Recientes**: Monitoreo de actividad en tiempo real
-- **Responsive Design**: Optimizado para desktop, tablet y móvil
-- **Modo Oscuro**: Interfaz adaptable con tema claro/oscuro
+**Métricas de Rendimiento**
+- KPIs en tiempo real con análisis de crecimiento
+- Monitoreo de ingresos y transacciones
+- Análisis de rentabilidad por producto
 
-## 🛠️ Tecnologías
+**Análisis Geográfico**
+- Distribución de ventas por países
+- Visualizaciones interactivas de mercados
+- Identificación de oportunidades regionales
+
+**Inteligencia de Negocio**
+- Productos más vendidos y rentables
+- Tendencias temporales de ventas
+- Recomendaciones estratégicas automatizadas
+
+**Interfaz Profesional**
+- Diseño responsive optimizado
+- Tema claro/oscuro adaptable
+- Navegación intuitiva y eficiente
+
+## Stack Tecnológico
 
 - **Framework**: Next.js 15 con App Router
 - **Lenguaje**: TypeScript
 - **Estilos**: Tailwind CSS v4
 - **Componentes**: shadcn/ui + Radix UI
-- **Gráficos**: Recharts
-- **Fuentes**: Space Grotesk + DM Sans
-- **Analytics**: Vercel Analytics
+- **Visualizaciones**: Recharts
+- **Tipografía**: Space Grotesk + DM Sans
 - **Deployment**: Vercel
 
-## 📦 Instalación
+## Instalación y Configuración
 
-### Prerrequisitos
+### Requisitos del Sistema
 
-- Node.js 18+ 
-- npm o yarn
+- Node.js 18 o superior
+- npm o yarn package manager
 
 ### Configuración Local
 
@@ -64,9 +74,9 @@ NODE_ENV=development
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 \`\`\`
 
-## 📊 Estructura de Datos
+## Estructura de Datos
 
-El dashboard procesa datos de ventas retail con la siguiente estructura:
+El sistema procesa datos de ventas retail con la siguiente estructura:
 
 \`\`\`typescript
 interface SalesData {
@@ -78,41 +88,60 @@ interface SalesData {
   UnitPrice: number
   CustomerID: string
   Country: string
-  TotalSale: number // Calculado automáticamente
+  TotalSale: number
 }
 \`\`\`
 
-## 🎯 KPIs Principales
+## Métricas Clave de Rendimiento
 
-- **Ingresos Totales**: £8.2M con crecimiento del 46.5%
-- **Transacciones**: 25,900 órdenes procesadas
-- **Ticket Promedio**: £316.85 por transacción
-- **Productos Activos**: 4,070 SKUs en catálogo
-- **Países Activos**: 37 mercados internacionales
-- **Top Producto**: WHITE HANGING HEART T-LIGHT HOLDER
+**Indicadores Financieros**
+- Ingresos Totales: £8.2M
+- Crecimiento: 46.5% interanual
+- Ticket Promedio: £316.85
+- Margen Bruto: 23.4%
 
-## 🌍 Análisis Geográfico
+**Indicadores Operacionales**
+- Transacciones Procesadas: 25,900
+- Productos Activos: 4,070 SKUs
+- Mercados Activos: 37 países
+- Tasa de Conversión: 3.2%
 
-### Mercados Principales
-1. **Reino Unido**: 91.2% de las ventas (£7.5M)
-2. **Alemania**: 2.3% de las ventas (£189K)
-3. **Francia**: 1.8% de las ventas (£147K)
-4. **EIRE**: 1.2% de las ventas (£98K)
-5. **España**: 0.9% de las ventas (£74K)
+## Análisis de Mercados
 
-## 📈 Scripts de Análisis
+### Distribución Geográfica de Ventas
 
-El proyecto incluye scripts de Python para procesamiento de datos:
+| País | Participación | Ingresos | Transacciones |
+|------|---------------|----------|---------------|
+| Reino Unido | 91.2% | £7.5M | 23,612 |
+| Alemania | 2.3% | £189K | 596 |
+| Francia | 1.8% | £147K | 465 |
+| EIRE | 1.2% | £98K | 310 |
+| España | 0.9% | £74K | 234 |
+
+### Productos de Mayor Rendimiento
+
+1. **WHITE HANGING HEART T-LIGHT HOLDER** - Líder en ventas
+2. **REGENCY CAKESTAND 3 TIER** - Alto margen
+3. **JUMBO BAG RED RETROSPOT** - Volumen consistente
+4. **PARTY BUNTING** - Crecimiento acelerado
+5. **LUNCH BAG RED RETROSPOT** - Demanda estable
+
+## Scripts de Procesamiento
+
+El proyecto incluye herramientas de análisis de datos:
 
 \`\`\`bash
-# Limpiar y procesar dataset
+# Procesamiento y limpieza de datos
 python scripts/01_data_cleaning.py
 
-# Calcular KPIs avanzados
+# Cálculo de KPIs avanzados
 python scripts/02_calculate_kpis.py
+
+# Generación de reportes PDF
+python scripts/03_generate_pdf_report.py
 \`\`\`
 
-## 🚀 Deployment
+## Deployment y Producción
 
 ### Vercel (Recomendado)
 
@@ -120,7 +149,7 @@ python scripts/02_calculate_kpis.py
 # Instalar Vercel CLI
 npm i -g vercel
 
-# Deploy
+# Deploy a producción
 vercel --prod
 \`\`\`
 
@@ -134,48 +163,32 @@ docker build -t dashboard-retail .
 docker run -p 3000:3000 dashboard-retail
 \`\`\`
 
-## 📱 Capturas de Pantalla
+## Documentación Técnica
 
-### Dashboard Principal
-![Dashboard Overview](docs/screenshots/dashboard-overview.png)
+### Arquitectura del Sistema
+- Componentes modulares con separación de responsabilidades
+- Estado global optimizado para rendimiento
+- Caching inteligente de datos y visualizaciones
 
-### Análisis por Países
-![Country Analysis](docs/screenshots/country-analysis.png)
+### Estándares de Código
+- TypeScript estricto para type safety
+- ESLint y Prettier para consistencia
+- Pruebas unitarias con Jest
 
-### Insights de Negocio
-![Business Insights](docs/screenshots/business-insights.png)
+## Enlaces de Referencia
 
-## 🤝 Contribuir
+- **Dashboard en Vivo**: [Ver Aplicación](https://vercel.com/hellen-martinezs-projects/v0-dashboard-with-database)
+- **Proyecto v0**: [Editar Código](https://v0.app/chat/projects/trOU7crvaby)
+- **Documentación**: [Guías Técnicas](docs/)
 
-1. Fork el proyecto
-2. Crea una rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'feat: agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
+## Soporte y Contacto
 
-Ver [CONTRIBUTING.md](docs/CONTRIBUTING.md) para más detalles.
+Para consultas técnicas o soporte:
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
-
-## 🔗 Enlaces
-
-- **Dashboard Live**: [Ver Demo](https://vercel.com/hellen-martinezs-projects/v0-dashboard-with-database)
-- **Proyecto v0**: [Editar en v0.app](https://v0.app/chat/projects/trOU7crvaby)
+- **Issues**: [GitHub Issues](https://github.com/tu-usuario/dashboard-retail/issues)
 - **Documentación**: [docs/](docs/)
-
-## 📞 Soporte
-
-¿Tienes preguntas o necesitas ayuda?
-
-- 📧 Email: soporte@dashboard-retail.com
-- 💬 Issues: [GitHub Issues](https://github.com/tu-usuario/dashboard-retail/issues)
-- 📖 Docs: [Documentación Completa](docs/)
+- **Email**: soporte@dashboard-retail.com
 
 ---
 
-**Desarrollado con ❤️ usando [v0.app](https://v0.app)**
-\`\`\`
-
-```json file="" isHidden
+*Desarrollado con tecnologías modernas y mejores prácticas de la industria*

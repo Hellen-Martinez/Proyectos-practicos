@@ -4,59 +4,60 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
 const salesData = [
-  { date: "01/12", ventas: 1850.25, ordenes: 12 },
-  { date: "02/12", ventas: 2100.5, ordenes: 15 },
-  { date: "03/12", ventas: 1650.75, ordenes: 9 },
-  { date: "04/12", ventas: 2890.4, ordenes: 18 },
-  { date: "05/12", ventas: 3200.15, ordenes: 22 },
-  { date: "06/12", ventas: 2750.8, ordenes: 16 },
-  { date: "07/12", ventas: 1950.3, ordenes: 11 },
-  { date: "08/12", ventas: 4100.65, ordenes: 28 },
-  { date: "09/12", ventas: 3850.9, ordenes: 25 },
-  { date: "10/12", ventas: 2450.2, ordenes: 14 },
-  { date: "11/12", ventas: 3650.45, ordenes: 24 },
-  { date: "12/12", ventas: 4200.75, ordenes: 29 },
-  { date: "13/12", ventas: 3950.6, ordenes: 26 },
-  { date: "14/12", ventas: 2800.35, ordenes: 17 },
+  { date: "Dec 1", ventas: 685420, ordenes: 364 },
+  { date: "Dec 2", ventas: 729850, ordenes: 389 },
+  { date: "Dec 3", ventas: 612340, ordenes: 298 },
+  { date: "Dec 6", ventas: 794680, ordenes: 445 },
+  { date: "Dec 7", ventas: 856920, ordenes: 478 },
+  { date: "Dec 8", ventas: 923150, ordenes: 512 },
+  { date: "Dec 9", ventas: 1045680, ordenes: 587 },
+  { date: "Dec 10", ventas: 887340, ordenes: 456 },
+  { date: "Dec 13", ventas: 756890, ordenes: 398 },
+  { date: "Dec 14", ventas: 834570, ordenes: 423 },
+  { date: "Dec 15", ventas: 1156780, ordenes: 634 },
+  { date: "Dec 16", ventas: 1289450, ordenes: 698 },
+  { date: "Dec 17", ventas: 1098760, ordenes: 589 },
+  { date: "Dec 20", ventas: 945680, ordenes: 512 },
 ]
 
 export function SalesChart() {
   return (
-    <Card className="bg-card border-border">
-      <CardHeader>
-        <CardTitle className="text-card-foreground font-heading">Tendencia de Ventas</CardTitle>
-        <CardDescription>Ventas diarias de productos de cocina y hogar</CardDescription>
+    <Card className="bg-white border-slate-200 shadow-sm">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-slate-800 font-serif text-lg font-semibold">Revenue Trends Analysis</CardTitle>
+        <CardDescription className="text-slate-600 text-sm">Daily sales performance - December 2010</CardDescription>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={salesData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" fontSize={12} />
-            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
+            <YAxis stroke="#64748b" fontSize={11} />
             <Tooltip
               contentStyle={{
-                backgroundColor: "hsl(var(--popover))",
-                border: "1px solid hsl(var(--border))",
+                backgroundColor: "white",
+                border: "1px solid #e2e8f0",
                 borderRadius: "6px",
+                boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
               }}
               formatter={(value, name) => [
-                name === "ventas" ? `$${value.toLocaleString()}` : value,
-                name === "ventas" ? "Ventas" : "Órdenes",
+                name === "ventas" ? `£${Number(value).toLocaleString()}` : Number(value).toLocaleString(),
+                name === "ventas" ? "Revenue" : "Orders",
               ]}
             />
             <Line
               type="monotone"
               dataKey="ventas"
-              stroke="hsl(var(--chart-1))"
-              strokeWidth={2}
-              dot={{ fill: "hsl(var(--chart-1))", strokeWidth: 2, r: 4 }}
+              stroke="#1e40af"
+              strokeWidth={2.5}
+              dot={{ fill: "#1e40af", strokeWidth: 2, r: 4 }}
             />
             <Line
               type="monotone"
               dataKey="ordenes"
-              stroke="hsl(var(--chart-2))"
+              stroke="#059669"
               strokeWidth={2}
-              dot={{ fill: "hsl(var(--chart-2))", strokeWidth: 2, r: 4 }}
+              dot={{ fill: "#059669", strokeWidth: 2, r: 3 }}
             />
           </LineChart>
         </ResponsiveContainer>
